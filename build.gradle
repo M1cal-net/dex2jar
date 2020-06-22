@@ -2,7 +2,7 @@ allprojects  {
   apply plugin: 'maven'
   apply plugin: 'idea'
   apply plugin: 'eclipse'
-  group = 'com.googlecode.d2j'
+  group = 'com.guardsquare'
   version = '2.1-SNAPSHOT'
 }
 
