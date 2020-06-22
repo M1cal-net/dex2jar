@@ -18,7 +18,7 @@ package com.googlecode.dex2jar.tools;
 
 import com.googlecode.d2j.Method;
 import com.googlecode.d2j.dex.BaseDexExceptionHandler;
-import com.googlecode.d2j.dex.Dex2jar;
+import com.googlecode.d2j.dex.Dex2Jar;
 import com.googlecode.d2j.node.DexMethodNode;
 import com.googlecode.d2j.reader.DexFileReader;
 import com.googlecode.d2j.smali.BaksmaliDumper;
@@ -73,7 +73,7 @@ public class BaksmaliBaseDexExceptionHandler extends BaseDexExceptionHandler {
         doAddVersion(vs, "d2j-smali", Smali.class);
         doAddVersion(vs, "d2j-base-cmd", BaseCmd.class);
         doAddVersion(vs, "dex-tools", Dex2jarCmd.class);
-        doAddVersion(vs, "dex-translator", Dex2jar.class);
+        doAddVersion(vs, "dex-translator", Dex2Jar.class);
         return vs.toString();
     }
 

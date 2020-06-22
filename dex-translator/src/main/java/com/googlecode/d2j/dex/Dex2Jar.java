@@ -41,31 +41,29 @@ import com.googlecode.d2j.reader.zip.ZipUtil;
 import com.googlecode.dex2jar.ir.IrMethod;
 import com.googlecode.dex2jar.ir.stmt.LabelStmt;
 import com.googlecode.dex2jar.ir.stmt.Stmt;
-import org.objectweb.asm.commons.Remapper;
-import org.objectweb.asm.commons.RemappingClassAdapter;
 
-public class Dex2jar {
-    public static Dex2jar from(byte[] in) throws IOException {
+public class Dex2Jar {
+    public static Dex2Jar from(byte[] in) throws IOException {
         return from(new DexFileReader(ZipUtil.readDex(in)));
     }
 
-    public static Dex2jar from(ByteBuffer in) throws IOException {
+    public static Dex2Jar from(ByteBuffer in) throws IOException {
         return from(new DexFileReader(in));
     }
 
-    public static Dex2jar from(BaseDexFileReader reader) {
-        return new Dex2jar(reader);
+    public static Dex2Jar from(BaseDexFileReader reader) {
+        return new Dex2Jar(reader);
     }
 
-    public static Dex2jar from(File in) throws IOException {
+    public static Dex2Jar from(File in) throws IOException {
         return from(Files.readAllBytes(in.toPath()));
     }
 
-    public static Dex2jar from(InputStream in) throws IOException {
+    public static Dex2Jar from(InputStream in) throws IOException {
         return from(new DexFileReader(in));
     }
 
-    public static Dex2jar from(String in) throws IOException {
+    public static Dex2Jar from(String in) throws IOException {
         return from(new File(in));
     }
 
@@ -75,7 +73,7 @@ public class Dex2jar {
     private int readerConfig;
     private int v3Config;
 
-    private Dex2jar(BaseDexFileReader reader) {
+    private Dex2Jar(BaseDexFileReader reader) {
         super();
         this.reader = reader;
         readerConfig |= DexFileReader.SKIP_DEBUG;
@@ -184,7 +182,7 @@ public class Dex2jar {
         return reader;
     }
 
-    public Dex2jar reUseReg(boolean b) {
+    public Dex2Jar reUseReg(boolean b) {
         if (b) {
             this.v3Config |= V3.REUSE_REGISTER;
         } else {
@@ -193,7 +191,7 @@ public class Dex2jar {
         return this;
     }
 
-    public Dex2jar topoLogicalSort(boolean b) {
+    public Dex2Jar topoLogicalSort(boolean b) {
         if (b) {
             this.v3Config |= V3.TOPOLOGICAL_SORT;
         } else {
@@ -202,7 +200,7 @@ public class Dex2jar {
         return this;
     }
 
-    public Dex2jar noCode(boolean b) {
+    public Dex2Jar noCode(boolean b) {
         if (b) {
             this.readerConfig |= DexFileReader.SKIP_CODE | DexFileReader.KEEP_CLINIT;
         } else {
@@ -211,7 +209,7 @@ public class Dex2jar {
         return this;
     }
 
-    public Dex2jar optimizeSynchronized(boolean b) {
+    public Dex2Jar optimizeSynchronized(boolean b) {
         if (b) {
             this.v3Config |= V3.OPTIMIZE_SYNCHRONIZED;
         } else {
@@ -220,7 +218,7 @@ public class Dex2jar {
         return this;
     }
 
-    public Dex2jar printIR(boolean b) {
+    public Dex2Jar printIR(boolean b) {
         if (b) {
             this.v3Config |= V3.PRINT_IR;
         } else {
@@ -229,22 +227,22 @@ public class Dex2jar {
         return this;
     }
 
-    public Dex2jar reUseReg() {
+    public Dex2Jar reUseReg() {
         this.v3Config |= V3.REUSE_REGISTER;
         return this;
     }
 
-    public Dex2jar optimizeSynchronized() {
+    public Dex2Jar optimizeSynchronized() {
         this.v3Config |= V3.OPTIMIZE_SYNCHRONIZED;
         return this;
     }
 
-    public Dex2jar printIR() {
+    public Dex2Jar printIR() {
         this.v3Config |= V3.PRINT_IR;
         return this;
     }
 
-    public Dex2jar topoLogicalSort() {
+    public Dex2Jar topoLogicalSort() {
         this.v3Config |= V3.TOPOLOGICAL_SORT;
         return this;
     }
@@ -253,7 +251,7 @@ public class Dex2jar {
         this.exceptionHandler = exceptionHandler;
     }
 
-    public Dex2jar skipDebug(boolean b) {
+    public Dex2Jar skipDebug(boolean b) {
         if (b) {
             this.readerConfig |= DexFileReader.SKIP_DEBUG;
         } else {
@@ -262,7 +260,7 @@ public class Dex2jar {
         return this;
     }
 
-    public Dex2jar skipDebug() {
+    public Dex2Jar skipDebug() {
         this.readerConfig |= DexFileReader.SKIP_DEBUG;
         return this;
     }
@@ -294,12 +292,12 @@ public class Dex2jar {
         throw new IOException("cant find zipfs support");
     }
 
-    public Dex2jar withExceptionHandler(DexExceptionHandler exceptionHandler) {
+    public Dex2Jar withExceptionHandler(DexExceptionHandler exceptionHandler) {
         this.exceptionHandler = exceptionHandler;
         return this;
     }
 
-    public Dex2jar skipExceptions(boolean b) {
+    public Dex2Jar skipExceptions(boolean b) {
         if (b) {
             this.readerConfig |= DexFileReader.SKIP_EXCEPTION;
         } else {
